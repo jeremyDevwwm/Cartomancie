@@ -1,14 +1,17 @@
 <template>
-  <form action="/api/PzHwc83jKTz998$263/modifyArticles" method="post">
+
 
     <div v-for="article in articles">
+      <form action="/api/PzHwc83jKTz998$263/modifyArticle" method="post">
       <p>{{ article.title }} :</p>
-      <textarea v-model:ref="articles">{{ article.content }}</textarea>
+      <textarea>{{ article.content }}</textarea>
       <p>Auteur : </p>
-      <input v-model:ref="articles" value="{{ article.authorName }}" id="">
+      <input v-model="article.authorName">
+        <input type="submit" value = "Modifier">
+      </form>
     </div>
-    <input type="submit" value = "Modifier">
-  </form>
+
+
 </template>
 
 <script setup>

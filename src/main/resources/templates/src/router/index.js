@@ -21,6 +21,11 @@ const router = createRouter({
       path : '/api/PzHwc83jKTz998$263/displayModifyArticles',
       name : 'modify article',
       component : () => import("../components/ArticlesModifier.vue")
+    },
+    {
+      path : '/api/mainPage',
+      name : 'main page',
+      component : () => import('../components/MainPage.vue')
     }
   ]
 })

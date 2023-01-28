@@ -21,7 +21,7 @@ public class AdminController {
     @GetMapping("/createArticle")
     public void createArticle(String title, String content, String authorName){
         Article newArticle = new Article();
-        ObjectId _id = new ObjectId();
+        String _id = new ObjectId().toHexString();
         newArticle.set_id(_id);
         newArticle.setTitle(title);
         newArticle.setContent(content);
@@ -34,18 +34,24 @@ public class AdminController {
         return repository.findAll();
     }
 
-    @PutMapping("/modifyArticles")
-    public void modifyArticles(List<Article> articles) throws ModifyArticleQueryException {
-        try{
-            repository.saveAll(articles);
+    @GetMapping("/modifyArticle{title}")
+    public void modifyArticle(Article article, @PathVariable String title) {
+        Article modifiedArticle = repository.findArticleByTitle(title);
+        modifiedArticle.setTitle(article.getTitle());
+        modifiedArticle.setContent(article.getContent());
+        modifiedArticle.setAuthorName(article.getAuthorName());
+        repository.save(modifiedArticle);
+    }
 
-        } catch(Exception e) {
+    @GetMapping("/findSingle{title}")
+    public Article findSingleArticle(@PathVariable String title){
+        return repository.findArticleByTitle(title);
+    }
 
-           throw new ModifyArticleQueryException("Une erreur de requête est survenue :(");
-
-        }
-
-
+    @GetMapping("/deleteArticle{title}")
+    public void deleteArticle(@PathVariable String title){
+       Article articleToRemove = repository.findArticleByTitle(title);
+       repository.delete(articleToRemove);
     }
 
 }

@@ -1,5 +1,7 @@
 package com.cecilePro.CecilePro.Entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -14,7 +16,7 @@ import java.util.Date;
 @Document("Articles")
 public class Article extends Content{
     @Id
-    private ObjectId _id;
+    private String _id;
     private String title;
     private String content;
     private String authorName;

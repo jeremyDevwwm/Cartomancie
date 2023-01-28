@@ -1,6 +1,8 @@
 package com.cecilePro.CecilePro.Controller;
 
+import com.cecilePro.CecilePro.Entities.Article;
 import com.cecilePro.CecilePro.Entities.User;
+import com.cecilePro.CecilePro.Repositories.ArticleRepository;
 import com.cecilePro.CecilePro.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,9 +18,13 @@ import java.util.List;
 public class MVController {
     @Autowired
     private UserRepository users;
-    @GetMapping("/allusers")
-    public List<User> fetchUsers(){
-        return users.findAll();
+
+    @Autowired
+    private ArticleRepository articles;
+
+    @GetMapping("/mainPage")
+    public List<Article> fetchArticles(){
+        return articles.findAll();
     }
 
 }
