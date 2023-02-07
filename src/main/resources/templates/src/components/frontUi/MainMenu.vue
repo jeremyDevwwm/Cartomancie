@@ -1,11 +1,12 @@
 <template>
   <header>
     <!-- Logo ici -->
-    <a class="logo" href="MainPage.vue"><img></a>
+    <a class="logo" href="MainPage.vue"></a>
     <div class="menu">
-      <ul v-for="article in articles">
-        <li><router-link to="{{article.title.replace(/\s+/g, '')}}">{{article.title}}</router-link></li>
-
+      <ul>
+        <li><router-link to="/api/Biographie">Biographie</router-link></li>
+        <li><router-link to="/api/Services">Mes Services</router-link></li>
+        <li><router-link to="/api/Tarifs">Mes Tarifs</router-link></li>
       </ul>
     </div>
   </header>

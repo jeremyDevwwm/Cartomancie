@@ -21,7 +21,7 @@ const articles = ref([]);
 onMounted(() => {
   fetch("http://localhost:8080/api/PzHwc83jKTz998$263/displayModifyArticles")
       .then((Response) => Response.json())
-      .then((data)=> {articles.value=data; console.log(articles.value)});
+      .then((data)=> {articles.value=data; });
 
 });
 
