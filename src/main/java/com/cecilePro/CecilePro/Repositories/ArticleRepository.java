@@ -8,4 +8,6 @@ import org.springframework.data.mongodb.repository.Query;
 public interface ArticleRepository extends MongoRepository<Article, ObjectId> {
     @Query("title = ?0")
     Article findArticleByTitle(String title);
+
+    Article findByTitle(String title);
 }

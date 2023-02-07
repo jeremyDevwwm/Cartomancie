@@ -1,8 +1,10 @@
 package com.cecilePro.CecilePro.Controller;
 
 import com.cecilePro.CecilePro.Entities.Article;
+import com.cecilePro.CecilePro.Entities.User;
 import com.cecilePro.CecilePro.Exceptions.ModifyArticleQueryException;
 import com.cecilePro.CecilePro.Repositories.ArticleRepository;
+import com.cecilePro.CecilePro.Repositories.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +16,18 @@ import java.util.List;
 @RequestMapping("/api/PzHwc83jKTz998$263")
 @CrossOrigin("http://localhost:5173")
 public class AdminController {
+
     @Autowired
     private ArticleRepository repository;
+
+    @Autowired
+    private UserRepository admin;
     private ModifyArticleQueryException articleQueryException;
 
+    @GetMapping("/adminMain")
+    public User adminGreetings(){
+        return admin.findByFirstname("Cecile");
+    }
     @GetMapping("/createArticle")
     public void createArticle(String title, String content, String authorName){
         Article newArticle = new Article();
@@ -36,7 +46,7 @@ public class AdminController {
 
     @GetMapping("/modifyArticle{title}")
     public void modifyArticle(Article article, @PathVariable String title) {
-        Article modifiedArticle = repository.findArticleByTitle(title);
+        Article modifiedArticle = repository.findByTitle(title);
         modifiedArticle.setTitle(article.getTitle());
         modifiedArticle.setContent(article.getContent());
         modifiedArticle.setAuthorName(article.getAuthorName());
